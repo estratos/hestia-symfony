@@ -14,9 +14,9 @@ class HestiaAPI extends AbstractBundle
 
 
 
-    public function __construct($username = "user", $password = "ownerpass")
+    public function __construct($admin = "admin", $password = "ownerpass")
     {
-        $this->username = $username;
+        $this->username = $admin;
         $this->password = $password;
     }
 
