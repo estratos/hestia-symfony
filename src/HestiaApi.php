@@ -1,9 +1,9 @@
 <?php
 
 namespace Estratos\HestiaApi;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-
-class HestiaAPI
+class HestiaAPI extends AbstractBundle
 {
 
     private $admin = 'admin';

@@ -1,0 +1,40 @@
+{
+    "name": "estratos/hestia-symfony",
+    "type": "symfony-bundle",
+    "description": "HESTIA CP REST API Client for Symfony Framework",
+    "keywords": ["php", "symfony", "hestia", "control panel"],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Julio Rodriguez",
+        "email": "julio.stratos@gmail.com"
+      }
+    ],
+    "autoload": {
+      "psr-4": { "Estratos\\HestiaApi\\": "src/" }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        
+      }
+    },
+    "require-dev": {
+      "symfony/http-kernel": "^4.0"   
+      
+    },
+    "require": {
+      "php": ">=8.1",
+      "domainreseller/php-dna": "^2.0"    
+    },
+  
+    "repositories": [
+      {
+          "type": "git",
+          "url": "https://github.com/estratos/hestia-symfony.git"
+      }],
+    "config": {
+      "allow-plugins": {
+        "php-http/discovery": true
+      }
+    }
+  }
