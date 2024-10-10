@@ -20,6 +20,65 @@ class HestiaApi extends AbstractBundle
         $this->password = $password;
     }
 
+    public function listUser($username = "user",  $format = 'json')
+    {
+        // Server credentials
+        $hst_hostname = $this->hostname;
+        $hst_port = '8083';
+        $hst_returncode = 'no';
+        $hst_username = 'admin';
+        $hst_password = $this->password;
+        $hst_command = 'v-list-user';
+        
+        // Prepare POST query
+        $postvars = array(
+            'user' => $hst_username,
+            'password' => $hst_password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $username,
+            'arg2' => $format
+        );
+
+        $answer = $this->request($postvars);
+
+        // Parse JSON output
+        $data = json_decode($answer, true);
+
+
+        return $data;
+    }
+
+    public function listUsers( $format = 'json')
+    {
+        // Server credentials
+        $hst_hostname = $this->hostname;
+        $hst_port = '8083';
+        $hst_returncode = 'no';
+        $hst_username = 'admin';
+        $hst_password = $this->password;
+        $hst_command = 'v-list-sys-users';
+     
+
+        // Prepare POST query
+        $postvars = array(
+            'user' => $hst_username,
+            'password' => $hst_password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,                 
+            'arg1' => $format
+        );
+
+        $answer = $this->request($postvars);
+
+        // Parse JSON output
+        $data = json_decode($answer, true);
+
+
+        return $data;
+    }
+
+
     public function listDomain($username = "user", $domain, $format = 'json')
     {
         // Server credentials
@@ -29,12 +88,7 @@ class HestiaApi extends AbstractBundle
         $hst_username = 'admin';
         $hst_password = $this->password;
         $hst_command = 'v-list-web-domain';
-
-        // Account
-        //$username = 'demo';
-        //$domain = 'demo.hestiacp.com';
-        //$format = 'json';
-
+        
         // Prepare POST query
         $postvars = array(
             'user' => $hst_username,
@@ -55,7 +109,7 @@ class HestiaApi extends AbstractBundle
         return $data;
     }
 
-    public function listDomains($username = "user", $domain, $format = 'json')
+    public function listDomains($username = "user", $format = 'json')
     {
         // Server credentials
         $hst_hostname = $this->hostname;
@@ -64,12 +118,7 @@ class HestiaApi extends AbstractBundle
         $hst_username = 'admin';
         $hst_password = $this->password;
         $hst_command = 'v-list-web-domains';
-
-        // Account
-        //$username = 'demo';
-        //$domain = 'demo.hestiacp.com';
-        //$format = 'json';
-
+        
         // Prepare POST query
         $postvars = array(
             'user' => $hst_username,
@@ -175,6 +224,18 @@ class HestiaApi extends AbstractBundle
     public function setHostname($hostname)
     {
         $this->hostname = $hostname;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of port
+     *
+     * @return  self
+     */ 
+    public function setPort($port)
+    {
+        $this->port = $port;
 
         return $this;
     }
