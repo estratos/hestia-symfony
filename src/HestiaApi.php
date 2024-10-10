@@ -142,7 +142,7 @@ class HestiaApi extends AbstractBundle
     {
 
         // Server credentials
-        $hst_hostname = $this->hostname;;
+        $hst_hostname = $this->hostname;
         $hst_port = $this->port;
         $hst_username = $this->admin;
         $hst_password = $this->password;
