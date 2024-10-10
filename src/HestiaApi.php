@@ -27,7 +27,7 @@ class HestiaApi extends AbstractBundle
         $hst_port = '8083';
         $hst_returncode = 'no';
         $hst_username = 'admin';
-        $hst_password = 'p4ssw0rd';
+        $hst_password = $this->password;
         $hst_command = 'v-list-web-domain';
 
         // Account
@@ -62,7 +62,7 @@ class HestiaApi extends AbstractBundle
         $hst_port = '8083';
         $hst_returncode = 'no';
         $hst_username = 'admin';
-        $hst_password = 'p4ssw0rd';
+        $hst_password = $this->password;
         $hst_command = 'v-list-web-domains';
 
         // Account
