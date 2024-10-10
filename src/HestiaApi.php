@@ -3,7 +3,7 @@
 namespace Estratos\HestiaApi;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class HestiaAPI extends AbstractBundle
+class HestiaApi extends AbstractBundle
 {
 
     private $admin = 'admin';
@@ -20,7 +20,7 @@ class HestiaAPI extends AbstractBundle
         $this->password = $password;
     }
 
-    public function listDomains($username = "user", $domain, $format = 'json')
+    public function listDomain($username = "user", $domain, $format = 'json')
     {
         // Server credentials
         $hst_hostname = $this->hostname;
@@ -44,6 +44,40 @@ class HestiaAPI extends AbstractBundle
             'arg1' => $username,
             'arg2' => $domain,
             'arg3' => $format
+        );
+
+        $answer = $this->request($postvars);
+
+        // Parse JSON output
+        $data = json_decode($answer, true);
+
+
+        return $data;
+    }
+
+    public function listDomains($username = "user", $domain, $format = 'json')
+    {
+        // Server credentials
+        $hst_hostname = $this->hostname;
+        $hst_port = '8083';
+        $hst_returncode = 'no';
+        $hst_username = 'admin';
+        $hst_password = 'p4ssw0rd';
+        $hst_command = 'v-list-web-domains';
+
+        // Account
+        //$username = 'demo';
+        //$domain = 'demo.hestiacp.com';
+        //$format = 'json';
+
+        // Prepare POST query
+        $postvars = array(
+            'user' => $hst_username,
+            'password' => $hst_password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $username,            
+            'arg2' => $format
         );
 
         $answer = $this->request($postvars);
