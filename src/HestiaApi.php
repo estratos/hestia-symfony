@@ -20,7 +20,7 @@ class HestiaApi extends AbstractBundle
         $this->password = $password;
     }
 
-    public function listUser($username = "user",  $format = 'json')
+    public function listUser($username,  $format = 'json')
     {
         // Server credentials
         $hst_hostname = $this->hostname;
@@ -79,7 +79,7 @@ class HestiaApi extends AbstractBundle
     }
 
 
-    public function listDomain($username = "user", $domain, $format = 'json')
+    public function listDomain($username, $domain, $format = 'json')
     {
         // Server credentials
         $hst_hostname = $this->hostname;
@@ -109,7 +109,7 @@ class HestiaApi extends AbstractBundle
         return $data;
     }
 
-    public function listDomains($username = "user", $format = 'json')
+    public function listDomains($username, $format = 'json')
     {
         // Server credentials
         $hst_hostname = $this->hostname;
