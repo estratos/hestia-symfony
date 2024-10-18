@@ -21,7 +21,7 @@ class HestiaApi extends AbstractBundle
         $this->password = $password;
     }
 
-    public function listUser($username = "user",  $format = 'json')
+    public function listUser($username,  $format = 'json')
     {
         // Server credentials
         $hst_hostname = $this->hostname;
@@ -59,14 +59,14 @@ class HestiaApi extends AbstractBundle
         $hst_username = 'admin';
         $hst_password = $this->password;
         $hst_command = 'v-list-sys-users';
+     
 
-
-        // Prepare POST query
+        // Prepare POST query with json output
         $postvars = array(
             'user' => $hst_username,
             'password' => $hst_password,
             'returncode' => $hst_returncode,
-            'cmd' => $hst_command,
+            'cmd' => $hst_command,                 
             'arg1' => $format
         );
 
@@ -180,7 +180,7 @@ class HestiaApi extends AbstractBundle
         return $data;
     }
 
-    public function listDomain($username = "user", $domain, $format = 'json')
+    public function listDomain($username, $domain, $format = 'json')
     {
         // Server credentials
         $hst_hostname = $this->hostname;
@@ -210,7 +210,7 @@ class HestiaApi extends AbstractBundle
         return $data;
     }
 
-    public function listDomains($username = "user", $format = 'json')
+    public function listDomains($username, $format = 'json')
     {
         // Server credentials
         $hst_hostname = $this->hostname;
