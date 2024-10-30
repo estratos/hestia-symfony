@@ -58,7 +58,7 @@ class HestiaApi extends AbstractBundle
         $hst_returncode = 'no';
         $hst_username = 'admin';
         $hst_password = $this->password;
-        $hst_command = 'v-list-sys-users';
+        $hst_command = 'v-list-users';
      
 
         // Prepare POST query with json output
