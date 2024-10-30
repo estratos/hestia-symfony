@@ -277,9 +277,7 @@ class HestiaApi extends AbstractBundle
 
     public function suspendDomain($username,$domain, $format = 'json')
     {
-
-
-        //// bin/v-suspend-user
+        //// bin/v-suspend-web-domain
         // Server credentials
         $hst_hostname = $this->hostname;
         $hst_port = '8083';
@@ -298,17 +296,40 @@ class HestiaApi extends AbstractBundle
             'arg2' => $domain,
             'arg3' => $format
         );
-
-
-
         $answer = $this->request($postvars);
 
         // Parse JSON output
         $data = json_decode($answer, true);
-
-
         return $data;
     }
+
+    public function unsuspendDomain($username,$domain, $format = 'json')
+    {
+        //// bin/v-suspend-web-domain
+        // Server credentials
+        $hst_hostname = $this->hostname;
+        $hst_port = '8083';
+        $hst_returncode = 'no';
+        $hst_username = 'admin';
+        $hst_password = $this->password;
+        $hst_command = 'v-unsuspend-web-domain';
+
+        // Prepare POST query
+        $postvars = array(
+            'user' => $hst_username,
+            'password' => $hst_password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $username,
+            'arg2' => $domain,
+            'arg3' => $format
+        );
+        $answer = $this->request($postvars);
+        // Parse JSON output
+        $data = json_decode($answer, true);
+        return $data;
+    }
+
 
     ///// MAIL FUNCIONS
     public function listMailDomains($username, $format = 'json')
