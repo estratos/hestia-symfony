@@ -180,6 +180,42 @@ class HestiaApi extends AbstractBundle
         return $data;
     }
 
+    ///v-list-user-packages
+
+    public function listUserPackages($format = 'json')
+    {
+
+
+        //// bin/v-list-user-packages
+        // Server credentials
+        $hst_hostname = $this->hostname;
+        $hst_port = '8083';
+        $hst_returncode = 'no';
+        $hst_username = 'admin';
+        $hst_password = $this->password;
+        $hst_command = 'v-list-user-packages';
+
+        // Prepare POST query
+        $postvars = array(
+            'user' => $hst_username,
+            'password' => $hst_password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $format
+        );
+
+
+
+        $answer = $this->request($postvars);
+
+        // Parse JSON output
+        $data = json_decode($answer, true);
+
+
+        return $data;
+    }
+    
+
     public function listDomain($username, $domain, $format = 'json')
     {
         // Server credentials
