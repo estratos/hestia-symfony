@@ -568,7 +568,84 @@ class HestiaApi extends AbstractBundle
 
         return $answer;
     }
+///  v-list-dns-domain alice wonderland.com
+ public function listDnsDomain($username, $domain, $format = 'json')
+    {
+        /// 
+        $hst_command = 'v-list-dns-domain';
+        $hst_returncode = 'no';
 
+        // Prepare POST query
+        $postvars = array(
+            'user' => $this->admin,
+            'password' => $this->password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $username,
+            'arg2' => $domain,
+            'arg3' => $format,
+            
+
+        );
+
+        $answer = $this->request($postvars);
+
+        return $answer;
+    }
+    
+
+///  v-list-dns-domains admin
+     public function listDnsDomains($username, $format = 'json')
+    {
+        /// 
+        $hst_command = 'v-list-dns-domains';
+        $hst_returncode = 'no';
+
+        // Prepare POST query
+        $postvars = array(
+            'user' => $this->admin,
+            'password' => $this->password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $username,
+            'arg2' => $format
+            
+
+        );
+
+        $answer = $this->request($postvars);
+
+        return $answer;
+    }
+
+///  v-list-dns-records admin example.com
+
+    public function listDnsRecords($username, $domain, $format = 'json')
+    {
+        /// 
+        $hst_command = 'v-list-dns-records';
+        $hst_returncode = 'no';
+
+        // Prepare POST query
+        $postvars = array(
+            'user' => $this->admin,
+            'password' => $this->password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $username,
+            'arg2' => $domain,
+            'arg3' => $format,
+            
+
+        );
+
+        $answer = $this->request($postvars);
+
+        return $answer;
+    }
+
+////// END CLI
+    
     public function request($postvars)
     {
         // Send POST query via cURL
