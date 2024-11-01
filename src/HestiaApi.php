@@ -538,12 +538,37 @@ class HestiaApi extends AbstractBundle
     }
 
 
-
-
-
-
-
     ///// DNS RECORD
+    
+    ///  v-add-dns-domain admin example.com ns1.example.com ns2.example.com '' '' '' '' '' '' yes
+
+    /// ADD DNS ZONE 
+
+    public function addDnsZone($username, $domain, $type, $value)
+    {
+        /// 
+        $hst_command = 'v-add-dns-domain';
+        $hst_returncode = 'no';
+
+        // Prepare POST query
+        $postvars = array(
+            'user' => $this->admin,
+            'password' => $this->password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $username,
+            'arg2' => $domain,
+            'arg3' => $type,
+            'arg4' => $value,
+
+        );
+
+        $answer = $this->request($postvars);
+
+        return $answer;
+    }
+
+
 
     public function addDnsRecord($username, $domain, $type, $value)
     {
