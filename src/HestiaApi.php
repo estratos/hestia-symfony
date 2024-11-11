@@ -669,7 +669,33 @@ class HestiaApi extends AbstractBundle
         return $answer;
     }
 
-////// END CLI
+    /////  DNS CLUSTER
+
+    public function synceCluster( $format = 'json')
+    {
+        /// 
+        $hst_command = 'v-sync-dns-cluster';
+        $hst_returncode = 'no';
+
+        // Prepare POST query
+        $postvars = array(
+            'user' => $this->admin,
+            'password' => $this->password,
+            'returncode' => $hst_returncode,
+            'cmd' => $hst_command,
+            'arg1' => $format,
+            
+
+        );
+
+        $answer = $this->request($postvars);
+
+        return $answer;
+    }
+
+
+
+    ////// END CLI
     
     public function request($postvars)
     {
