@@ -59,14 +59,14 @@ class HestiaApi extends AbstractBundle
         $hst_username = 'admin';
         $hst_password = $this->password;
         $hst_command = 'v-list-users';
-     
+
 
         // Prepare POST query with json output
         $postvars = array(
             'user' => $hst_username,
             'password' => $hst_password,
             'returncode' => $hst_returncode,
-            'cmd' => $hst_command,                 
+            'cmd' => $hst_command,
             'arg1' => $format
         );
 
@@ -214,7 +214,7 @@ class HestiaApi extends AbstractBundle
 
         return $data;
     }
-    
+
 
     public function listDomain($username, $domain, $format = 'json')
     {
@@ -311,7 +311,7 @@ class HestiaApi extends AbstractBundle
         }
     }
 
-    public function suspendDomain($username,$domain, $format = 'json')
+    public function suspendDomain($username, $domain, $format = 'json')
     {
         //// bin/v-suspend-web-domain
         // Server credentials
@@ -339,7 +339,7 @@ class HestiaApi extends AbstractBundle
         return $data;
     }
 
-    public function unsuspendDomain($username,$domain, $format = 'json')
+    public function unsuspendDomain($username, $domain, $format = 'json')
     {
         //// bin/v-suspend-web-domain
         // Server credentials
@@ -539,7 +539,7 @@ class HestiaApi extends AbstractBundle
 
 
     ///// DNS RECORD
-    
+
     ///  v-add-dns-domain admin example.com ns1.example.com ns2.example.com '' '' '' '' '' '' yes
 
     /// ADD DNS ZONE 
@@ -593,8 +593,8 @@ class HestiaApi extends AbstractBundle
 
         return $answer;
     }
-///  v-list-dns-domain alice wonderland.com
- public function listDnsDomain($username, $domain, $format = 'json')
+    ///  v-list-dns-domain alice wonderland.com
+    public function listDnsDomain($username, $domain, $format = 'json')
     {
         /// 
         $hst_command = 'v-list-dns-domain';
@@ -609,7 +609,7 @@ class HestiaApi extends AbstractBundle
             'arg1' => $username,
             'arg2' => $domain,
             'arg3' => $format,
-            
+
 
         );
 
@@ -617,10 +617,10 @@ class HestiaApi extends AbstractBundle
 
         return $answer;
     }
-    
 
-///  v-list-dns-domains admin
-     public function listDnsDomains($username, $format = 'json')
+
+    ///  v-list-dns-domains admin
+    public function listDnsDomains($username, $format = 'json')
     {
         /// 
         $hst_command = 'v-list-dns-domains';
@@ -634,7 +634,7 @@ class HestiaApi extends AbstractBundle
             'cmd' => $hst_command,
             'arg1' => $username,
             'arg2' => $format
-            
+
 
         );
 
@@ -643,7 +643,7 @@ class HestiaApi extends AbstractBundle
         return $answer;
     }
 
-///  v-list-dns-records admin example.com
+    ///  v-list-dns-records admin example.com
 
     public function listDnsRecords($username, $domain, $format = 'json')
     {
@@ -660,7 +660,7 @@ class HestiaApi extends AbstractBundle
             'arg1' => $username,
             'arg2' => $domain,
             'arg3' => $format,
-            
+
 
         );
 
@@ -671,7 +671,7 @@ class HestiaApi extends AbstractBundle
 
     /////  DNS CLUSTER
 
-    public function synceCluster( $format = 'json')
+    public function syncCluster($format = 'json')
     {
         /// 
         $hst_command = 'v-sync-dns-cluster';
@@ -684,8 +684,6 @@ class HestiaApi extends AbstractBundle
             'returncode' => $hst_returncode,
             'cmd' => $hst_command,
             'arg1' => $format,
-            
-
         );
 
         $answer = $this->request($postvars);
@@ -696,7 +694,7 @@ class HestiaApi extends AbstractBundle
 
 
     ////// END CLI
-    
+
     public function request($postvars)
     {
         // Send POST query via cURL
